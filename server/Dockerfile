@@ -41,7 +41,8 @@ RUN set -ex \
         && make install \
         && cd .. \
         && rm -rf $SS_DIR \
-    && apk del TMP
+    && apk del TMP \
+    && ln -s /usr/local/bin/ss-server /usr/local/bin/httpd-server
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
@@ -53,7 +54,7 @@ EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 ENV OPTIONS	-v
 
-CMD ss-server -s "$SERVER_ADDR" \
+CMD httpd-server -s "$SERVER_ADDR" \
               -p "$SERVER_PORT" \
               -m "$METHOD"      \
               -k "$PASSWORD"    \
