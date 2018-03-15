@@ -9,6 +9,7 @@ ENV SS_VER 3.1.3
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
 
+RUN apk add -U iproute2 && ln -s /usr/lib/tc /lib/tc
 RUN set -ex \
     && apk add --no-cache c-ares \
                           libcrypto1.0 \
@@ -54,7 +55,7 @@ EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 ENV OPTIONS	-v
 
-ENV LIMIT_PORT 61089
+ENV LIMIT_PORT 61080
 ENV LIMIT_CONN 20
 ENV RATE 10mbit
 ENV BURST 100kb
