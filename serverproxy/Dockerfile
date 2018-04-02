@@ -63,6 +63,7 @@ ENV BURST 100kb
 ENV LATENCY 50ms
 ENV INTERVAL 60
 
+COPY proxychains.conf /etc/proxychains.conf
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
