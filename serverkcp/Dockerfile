@@ -58,6 +58,7 @@ ENV DNS_ADDR    8.8.8.8
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 ENV OPTIONS	-v
+ENV KCP_OPTIONS	--nocomp
 
 CMD httpd-server -s "$SERVER_ADDR" \
               -p "$SERVER_PORT" \
