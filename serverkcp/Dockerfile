@@ -60,11 +60,7 @@ EXPOSE $SERVER_PORT/udp
 ENV OPTIONS	-v
 ENV KCP_OPTIONS	--nocomp
 
-CMD httpd-server -s "$SERVER_ADDR" \
-              -p "$SERVER_PORT" \
-              -m "$METHOD"      \
-              -k "$PASSWORD"    \
-              -t "$TIMEOUT"     \
-              -d "$DNS_ADDR"    \
-              -u                \
-              --fast-open $OPTIONS
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
