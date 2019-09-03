@@ -47,7 +47,6 @@ RUN set -ex \
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
-ENV KCP_PORT `expr $SERVER_PORT + 100`
 ENV METHOD      chacha20-ietf-poly1305
 ENV PASSWORD	pwd
 ENV TIMEOUT     300
@@ -57,7 +56,7 @@ ENV KCP_OPTIONS	--nocomp
 
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
-EXPOSE $KCP_PORT/udp
+
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
