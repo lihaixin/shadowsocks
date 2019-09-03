@@ -43,12 +43,12 @@ RUN set -ex \
     && apk del TMP \
     && ln -s /usr/local/bin/ss-server /usr/local/bin/httpd-server
 
-ARG SERVER_ADDR 0.0.0.0
+ARG SERVER_ADDR=0.0.0.0
 ENV SERVER_PORT 61080
 ENV METHOD      xchacha20-ietf-poly1305
 ENV PASSWORD	pwd
-ARG TIMEOUT     300
-ARG DNS_ADDR    8.8.8.8
+ARG TIMEOUT=300
+ARG DNS_ADDR=8.8.8.8
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 ENV OPTIONS	-v
