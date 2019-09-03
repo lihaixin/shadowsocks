@@ -5,7 +5,7 @@
 FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 
-ARG SS_VER=3.2.0
+ARG SS_VER=3.3.1
 
 
 RUN set -ex \
@@ -50,6 +50,7 @@ ENV METHOD      xchacha20-ietf-poly1305
 ENV PASSWORD	pwd
 ENV TIMEOUT     300
 ENV OPTIONS         -v
+
 # EXPOSE $LOCAL_PORT/tcp
 
 CMD ss-local  -s "$SERVER_ADDR" \
