@@ -39,7 +39,7 @@ RUN set -ex \
         && ./configure --disable-documentation \
         && make install \
         && cd .. \
-        && rm -rf $SS_DIR \
+        && rm -rf shadowsocks-libev-$SS_VER \
     && apk del TMP
 
 ENV SERVER_ADDR 0.0.0.0
