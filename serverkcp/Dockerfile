@@ -47,7 +47,7 @@ RUN set -ex \
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
-ENV METHOD      chacha20-ietf-poly1305
+ENV METHOD      xchacha20-ietf-poly1305
 ENV PASSWORD	pwd
 ENV TIMEOUT     300
 ENV DNS_ADDR    8.8.8.8
