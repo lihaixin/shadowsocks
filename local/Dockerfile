@@ -2,12 +2,11 @@
 # Dockerfile for shadowsocks-libev
 #
 
-FROM alpine
+FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 3.1.1
-ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
-ENV SS_DIR shadowsocks-libev-$SS_VER
+ARG SS_VER=3.2.0
+
 
 RUN set -ex \
     && apk add --no-cache c-ares \
@@ -31,8 +30,8 @@ RUN set -ex \
                              openssl-dev \
                              pcre-dev \
                              tar \
-    && curl -sSL $SS_URL | tar xz \
-    && cd $SS_DIR \
+    && curl -sSL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz | tar xz \
+    && cd shadowsocks-libev-$SS_VER \
         && curl -sSL https://github.com/shadowsocks/ipset/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libipset \
         && curl -sSL https://github.com/shadowsocks/libcork/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libcork \
         && curl -sSL https://github.com/shadowsocks/libbloom/archive/master.tar.gz | tar xz --strip 1 -C libbloom \
@@ -47,7 +46,7 @@ ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
 ENV LOCAL_ADDR      0.0.0.0
 ENV LOCAL_PORT      1080
-ENV METHOD      chacha20-ietf-poly1305
+ENV METHOD      xchacha20-ietf-poly1305
 ENV PASSWORD	pwd
 ENV TIMEOUT     300
 ENV OPTIONS         -v
