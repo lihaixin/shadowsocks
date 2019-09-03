@@ -6,7 +6,7 @@
 
 FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
-ARG SS_VER 3.2.0
+ARG SS_VER=3.2.0
 
 RUN set -ex \
     && apk add --no-cache c-ares \
