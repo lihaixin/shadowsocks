@@ -52,7 +52,7 @@ ENV PASSWORD=pwd
 ENV TIMEOUT=300
 ENV OPTIONS=-v
 
-# EXPOSE $LOCAL_PORT/tcp
+EXPOSE $LOCAL_PORT/tcp
 
 CMD ss-local  -s "$SERVER_ADDR" \
               -p "$SERVER_PORT" \
