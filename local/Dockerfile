@@ -6,7 +6,7 @@ FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 
 ARG SS_VER=3.3.1
-
+ENV TZ=Asia/Shanghai
 
 RUN set -ex \
     && apk add --no-cache c-ares \
@@ -14,6 +14,7 @@ RUN set -ex \
                           libev \
                           libsodium \
                           mbedtls \
+			  tzdata \
                           pcre \
     && apk add --no-cache \
                --virtual TMP autoconf \
@@ -42,14 +43,14 @@ RUN set -ex \
         && rm -rf shadowsocks-libev-$SS_VER \
     && apk del TMP
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 61080
-ENV LOCAL_ADDR      0.0.0.0
-ENV LOCAL_PORT      1080
-ENV METHOD      xchacha20-ietf-poly1305
-ENV PASSWORD	pwd
-ENV TIMEOUT     300
-ENV OPTIONS         -v
+ENV SERVER_ADDR=0.0.0.0
+ENV SERVER_PORT=61080
+ENV LOCAL_ADDR=0.0.0.0
+ENV LOCAL_PORT=1080
+ENV METHOD=xchacha20-ietf-poly1305
+ENV PASSWORD=pwd
+ENV TIMEOUT=300
+ENV OPTIONS=-v
 
 # EXPOSE $LOCAL_PORT/tcp
 
