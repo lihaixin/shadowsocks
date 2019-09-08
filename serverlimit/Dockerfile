@@ -5,9 +5,9 @@
 FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 3.3.1
-ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
-ENV SS_DIR shadowsocks-libev-$SS_VER
+ARG SS_VER=3.3.1
+ENV TZ=Asia/Shanghai
+
 
 RUN apk add -U iproute2 && ln -s /usr/lib/tc /lib/tc
 RUN set -ex \
@@ -16,6 +16,7 @@ RUN set -ex \
                           libev \
                           libsodium \
                           mbedtls \
+                          tzdata \
                           pcre \
     && apk add --no-cache \
                --virtual TMP autoconf \
@@ -58,8 +59,8 @@ EXPOSE $SERVER_PORT/udp
 
 
 ENV LIMIT_PORT 61080
-ENV LIMIT_CONN 20
-ENV RATE 10mbit
+ENV LIMIT_CONN 40
+ENV RATE 20mbit
 ENV BURST 100kb
 ENV LATENCY 50ms
 ENV INTERVAL 60
