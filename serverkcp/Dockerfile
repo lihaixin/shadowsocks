@@ -7,6 +7,7 @@ MAINTAINER EasyPi Software Foundation
 
 ARG SS_VER=3.3.1
 ARG KCPTUN_VERSION=20190515
+ENV TZ=Asia/Shanghai
 
 
 RUN set -ex \
@@ -15,6 +16,7 @@ RUN set -ex \
                           libev \
                           libsodium \
                           mbedtls \
+                          tzdata \
                           pcre \
     && apk add --no-cache \
                --virtual TMP autoconf \
