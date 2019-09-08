@@ -7,13 +7,14 @@
 FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 ARG SS_VER=3.3.1
-
+ENV TZ=Asia/Shanghai
 RUN set -ex \
     && apk add --no-cache c-ares \
                           libcrypto1.0 \
                           libev \
                           libsodium \
                           mbedtls \
+                          tzdata \
                           pcre \
     && apk add --no-cache \
                --virtual TMP autoconf \
