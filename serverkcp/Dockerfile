@@ -17,13 +17,13 @@ RUN set -ex \
                           libsodium \
                           mbedtls \
                           tzdata \
+                          curl \
                           pcre \
     && apk add --no-cache \
                --virtual TMP autoconf \
                              automake \
                              build-base \
                              c-ares-dev \
-                             curl \
                              gettext-dev \
                              libev-dev \
                              libsodium-dev \
