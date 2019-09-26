@@ -61,11 +61,11 @@ RUN set -ex \
         && wget $UDPSPEEDER_DL_ADRESS -O $UDPSPEEDER_FILE_NAME \
         && tar -zxvf $UDPSPEEDER_FILE_NAME \
         && find ./ -type f -not -name "$UDPSPEEDER_BIN_NAME" -delete \
-        && ln -s "/home/$UDPSPEEDER_BIN_NAME" /usr/bin/speederv2 \
+        && mv "/home/$UDPSPEEDER_BIN_NAME" /usr/bin/speederv2 \
         && wget $UDP2RAW_DL_ADRESS -O $UDP2RAW_FILE_NAME \
         && tar -zxvf $UDP2RAW_FILE_NAME \
-#        && find ./ -type f -not -name "$UDP2RAW_BIN_NAME" -delete \
-        && ln -s "/home/$UDP2RAW_BIN_NAME" /usr/bin/udp2raw-tunnel \
+        && find ./ -type f -not -name "$UDP2RAW_BIN_NAME" -delete \
+        && mv "/home/$UDP2RAW_BIN_NAME" /usr/bin/udp2raw-tunnel \
         && apk del TMP
 
 ENV SERVER_ADDR 0.0.0.0
