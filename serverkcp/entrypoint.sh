@@ -35,7 +35,7 @@ echo "UDPSPEED端口 (udp) = $UDPSPEED_PORT"
 echo
 echo "UDP2RAW端口 (tcp) = $UDP2RAW_PORT"
 echo
-echo "ss+kcp用户密码 (password) = $PASSWORD"
+echo "ss+kcp+udp2raw用户密码 (password) = $PASSWORD"
 echo
 echo "加密协议 (xchacha20-ietf-poly1305 | aes-256-gcm ) = $METHOD"
 echo
