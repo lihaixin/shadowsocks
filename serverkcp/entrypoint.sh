@@ -55,5 +55,5 @@ sleep 2
 
 #启动udp2raw-tunnel进程
 sleep 2
-/usr/bin/udp2raw-tunnel -s -l 0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp  -a -k $PASSWORD >udp2raw.log 2>&1 &
+/usr/bin/udp2raw-tunnel -s -l 0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp  -a -k $PASSWORD >udp2raw.log 2>&1
 
