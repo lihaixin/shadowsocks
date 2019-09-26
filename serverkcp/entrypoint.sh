@@ -55,5 +55,5 @@ UDPSPEED_PORT=`expr $SERVER_PORT + 99`
 
 #启动udp2raw-tunnel进程
 UDP2RAW_PORT=`expr $SERVER_PORT + 100`
-/usr/bin/udp2raw-tunnel -s -l 0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp  -a -k $PASSWORD /dev/sdtout 2>&1
+/usr/bin/udp2raw-tunnel -s -l 0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp -k $PASSWORD /dev/sdtout 2>&1
 
