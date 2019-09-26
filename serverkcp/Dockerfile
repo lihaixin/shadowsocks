@@ -64,7 +64,7 @@ RUN set -ex \
         && ln -s "/home/$UDPSPEEDER_BIN_NAME" /usr/bin/speederv2 \
         && wget $UDP2RAW_DL_ADRESS -O $UDP2RAW_FILE_NAME \
         && tar -zxvf $UDP2RAW_FILE_NAME \
-        && find ./ -type f -not -name "$UDP2RAW_BIN_NAME" -delete \
+#        && find ./ -type f -not -name "$UDP2RAW_BIN_NAME" -delete \
         && ln -s "/home/$UDP2RAW_BIN_NAME" /usr/bin/udp2raw-tunnel \
         && apk del TMP
 
