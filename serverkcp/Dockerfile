@@ -17,7 +17,7 @@ ARG UDPSPEEDER_BIN_NAME="speederv2_$ARCH"
 
 ARG UDP2RAW_TAG_NAME=20180225.1
 ARG UDP2RAW_FILE_NAME=udp2raw_binaries.tar.gz
-ARG UDP2RAW_DL_ADRESS="https://github.com/wangyu-/udp2raw-tunnel/releases/download/$TAG_NAME/$FILE_NAME"
+ARG UDP2RAW_DL_ADRESS="https://github.com/wangyu-/udp2raw-tunnel/releases/download/$UDP2RAW_TAG_NAME/$UDP2RAW_FILE_NAME"
 ARG UDP2RAW_BIN_NAME="udp2raw_$ARCH"
 
 ENV TZ=Asia/Shanghai
