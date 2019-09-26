@@ -3,6 +3,8 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 # KCP端口变量设置为SS端口+100
 KCP_PORT=`expr $SERVER_PORT + 100`
+UDPSPEED_PORT=`expr $SERVER_PORT + 99`
+UDP2RAW_PORT=`expr $SERVER_PORT + 100`
 
 # 在线获得服务器IP
 get_ip() {
@@ -29,6 +31,10 @@ echo "SS端口 (tcp/udp) = $SERVER_PORT"
 echo
 echo "KCP端口 (udp) = $KCP_PORT"
 echo
+echo "UDPSPEED端口 (udp) = $UDPSPEED_PORT"
+echo
+echo "UDP2RAW端口 (tcp) = $UDP2RAW_PORT"
+echo
 echo "ss+kcp用户密码 (password) = $PASSWORD"
 echo
 echo "加密协议 (xchacha20-ietf-poly1305 | aes-256-gcm ) = $METHOD"
@@ -41,4 +47,12 @@ httpd-server -s "$SERVER_ADDR" -p "$SERVER_PORT" -m "$METHOD" -k "$PASSWORD"  -t
 
 # 启动KCP进程
 sleep 2
-server_linux_amd64 -t "127.0.0.1:$SERVER_PORT" -l ":$KCP_PORT" --key="$PASSWORD" $KCP_OPTIONS
+server_linux_amd64 -t "127.0.0.1:$SERVER_PORT" -l ":$KCP_PORT" --key="$PASSWORD" $KCP_OPTIONS > /dev/sdtout 2>&1 &
+
+# 启动UDPspeedv2进程
+sleep2
+/usr/bin/speederv2 -s -l127.0.0.1:$UDPSPEED_PORT -r127.0.0.1:$SERVER_PORT -f2:4 --mode 0 --timeout 0 >speeder.log 2>&1 &
+
+#启动udp2raw-tunnel进程
+/usr/bin/udp2raw-tunnel -s -l0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp  -a -k $PASSWORD >udp2raw.log 2>&1 &
+
