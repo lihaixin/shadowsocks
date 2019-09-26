@@ -1,7 +1,7 @@
 #!/bin/sh
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-# KCP端口变量设置为SS端口+100
+# 设置端口变量设置为SS端口+100
 KCP_PORT=`expr $SERVER_PORT + 100`
 UDPSPEED_PORT=`expr $SERVER_PORT + 99`
 UDP2RAW_PORT=`expr $SERVER_PORT + 100`
