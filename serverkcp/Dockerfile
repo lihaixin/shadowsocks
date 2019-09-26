@@ -7,9 +7,21 @@ MAINTAINER EasyPi Software Foundation
 
 ARG SS_VER=3.3.1
 ARG KCPTUN_VERSION=20190515
+
+ARG ARCH=amd64
+
+ARG UDPSPEEDER_TAG_NAME=20180522.0
+ARG UDPSPEEDER_FILE_NAME=speederv2_binaries.tar.gz
+ARG UDPSPEEDER_DL_ADRESS="https://github.com/wangyu-/UDPspeeder/releases/download/$UDPSPEEDER_TAG_NAME/$UDPSPEEDER_FILE_NAME"
+ARG UDPSPEEDER_BIN_NAME="speederv2_$ARCH"
+
+ARG UDP2RAW_TAG_NAME=20180225.1
+ARG UDP2RAW_FILE_NAME=udp2raw_binaries.tar.gz
+ARG UDP2RAW_DL_ADRESS="https://github.com/wangyu-/udp2raw-tunnel/releases/download/$TAG_NAME/$FILE_NAME"
+ARG UDP2RAW_BIN_NAME="udp2raw_$ARCH"
+
 ENV TZ=Asia/Shanghai
-
-
+WORKDIR /home
 RUN set -ex \
     && apk add --no-cache c-ares \
                           libcrypto1.0 \
@@ -44,8 +56,17 @@ RUN set -ex \
         && make install \
         && cd .. \
         && rm -rf shadowsocks-libev-$SS_VER \
-    && apk del TMP \
-    && ln -s /usr/local/bin/ss-server /usr/local/bin/httpd-server
+        && cd /home \
+        && ln -s /usr/local/bin/ss-server /usr/local/bin/httpd-server \
+        && wget $UDPSPEEDER_DL_ADRESS -O $UDPSPEEDER_FILE_NAME \
+        && tar -zxvf $UDPSPEEDER_FILE_NAME \
+        && find ./ -type f -not -name "$UDPSPEEDER_BIN_NAME" -delete \
+        && ln -s "/home/$UDPSPEEDER_BIN_NAME" /usr/bin/speederv2 \
+        && wget $UDP2RAW_DL_ADRESS -O $UDP2RAW_FILE_NAME \
+        && tar -zxvf $UDP2RAW_FILE_NAME \
+        && find ./ -type f -not -name "$UDP2RAW_BIN_NAME" -delete \
+        && ln -s "/home/$UDP2RAW_BIN_NAME" /usr/bin/udp2raw-tunnel \
+        && apk del TMP \
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
@@ -58,6 +79,7 @@ ENV KCP_OPTIONS	--nocomp
 
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
+
 
 
 COPY entrypoint.sh /entrypoint.sh
