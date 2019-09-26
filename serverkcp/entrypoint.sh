@@ -4,7 +4,7 @@ export PATH
 # KCP端口变量设置为SS端口+100
 KCP_PORT=`expr $SERVER_PORT + 100`
 UDPSPEED_PORT=`expr $SERVER_PORT + 99`
-UDP2RAW_PORT=`expr $SERVER_PORT + 101`
+UDP2RAW_PORT=`expr $SERVER_PORT + 100`
 # 在线获得服务器IP
 get_ip() {
 	ip=$DOMAIN
