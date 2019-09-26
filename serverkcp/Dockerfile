@@ -66,7 +66,7 @@ RUN set -ex \
         && tar -zxvf $UDP2RAW_FILE_NAME \
         && find ./ -type f -not -name "$UDP2RAW_BIN_NAME" -delete \
         && ln -s "/home/$UDP2RAW_BIN_NAME" /usr/bin/udp2raw-tunnel \
-        && apk del TMP \
+        && apk del TMP
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 61080
