@@ -50,9 +50,10 @@ sleep 2
 server_linux_amd64 -t "127.0.0.1:$SERVER_PORT" -l ":$KCP_PORT" --key="$PASSWORD" $KCP_OPTIONS > /dev/sdtout 2>&1 &
 
 # 启动UDPspeedv2进程
-sleep2
-/usr/bin/speederv2 -s -l127.0.0.1:$UDPSPEED_PORT -r127.0.0.1:$SERVER_PORT -f2:4 --mode 0 --timeout 0 >speeder.log 2>&1 &
+sleep 2
+/usr/bin/speederv2 -s -l 127.0.0.1:$UDPSPEED_PORT -r 127.0.0.1:$SERVER_PORT -f2:4 --mode 0 --timeout 0 >speeder.log 2>&1 &
 
 #启动udp2raw-tunnel进程
-/usr/bin/udp2raw-tunnel -s -l0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp  -a -k $PASSWORD >udp2raw.log 2>&1 &
+sleep 2
+/usr/bin/udp2raw-tunnel -s -l 0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp  -a -k $PASSWORD >udp2raw.log 2>&1 &
 
