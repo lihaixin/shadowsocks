@@ -53,7 +53,11 @@ server_linux_amd64 -t "127.0.0.1:$SERVER_PORT" -l ":$KCP_PORT" --key="$PASSWORD"
 UDPSPEED_PORT=`expr $SERVER_PORT + 99`
 /usr/bin/speederv2 -s -l 127.0.0.1:$UDPSPEED_PORT -r 127.0.0.1:$SERVER_PORT -f2:4 --mode 0 --timeout 0 /dev/sdtout 2>&1 &
 
+#启动限速功能
+iptables -A INPUT -p tcp -m state --state NEW --dport $SERVER_PORT -m connlimit --connlimit-above $LIMIT_CONN -j DROP
+tc qdisc add dev eth0 root tbf rate $RATE burst 100kb latency 50ms
+#watch -n 60 tc -s qdisc ls dev eth0
+
 #启动udp2raw-tunnel进程
 UDP2RAW_PORT=`expr $SERVER_PORT + 100`
 /usr/bin/udp2raw-tunnel -s -l 0.0.0.0:$UDP2RAW_PORT -r 127.0.0.1:$UDPSPEED_PORT  --raw-mode faketcp -k $PASSWORD /dev/sdtout 2>&1
-
