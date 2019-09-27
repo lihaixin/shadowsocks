@@ -22,6 +22,7 @@ ARG UDP2RAW_BIN_NAME="udp2raw_$ARCH"
 
 ENV TZ=Asia/Shanghai
 WORKDIR /home
+RUN apk add -U iproute2 && ln -s /usr/lib/tc /lib/tc
 RUN set -ex \
     && apk add --no-cache c-ares \
                           libcrypto1.0 \
