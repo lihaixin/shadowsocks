@@ -81,7 +81,12 @@ ENV KCP_OPTIONS	--nocomp
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 
-
+ENV LIMIT_PORT 61080
+ENV LIMIT_CONN 40
+ENV RATE 20mbit
+ENV BURST 100kb
+ENV LATENCY 50ms
+ENV INTERVAL 60
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
