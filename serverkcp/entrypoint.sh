@@ -36,6 +36,10 @@ echo "UDP2RAW端口 (tcp) = $UDP2RAW_PORT"
 echo
 echo "ss+kcp+udp2raw用户密码 (password) = $PASSWORD"
 echo
+echo "TCP链接数 (tcp_conn) = $LIMIT_CONN"
+echo
+echo "用户最大带宽 (rate) = $RATE"
+echo
 echo "加密协议 (xchacha20-ietf-poly1305 | aes-256-gcm ) = $METHOD"
 echo
 echo "----------------- END ----------------------"
