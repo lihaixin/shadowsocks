@@ -55,7 +55,7 @@ server_linux_amd64 -t "127.0.0.1:$SERVER_PORT" -l ":$KCP_PORT" --key="$PASSWORD"
 # 启动UDPspeedv2进程
 
 UDPSPEED_PORT=`expr $SERVER_PORT + 99`
-/usr/bin/speederv2 -s -l 127.0.0.1:$UDPSPEED_PORT -r 127.0.0.1:$SERVER_PORT -f2:4 --mode 0 --timeout 0 /dev/sdtout 2>&1 &
+/usr/bin/speederv2 -s -l 127.0.0.1:$UDPSPEED_PORT -r 127.0.0.1:$SERVER_PORT -f$FEC_OPTIONS --mode 0 --timeout 0 /dev/sdtout 2>&1 &
 
 #启动限速功能
 iptables -A INPUT -p tcp -m state --state NEW --dport $SERVER_PORT -m connlimit --connlimit-above $LIMIT_CONN -j DROP
