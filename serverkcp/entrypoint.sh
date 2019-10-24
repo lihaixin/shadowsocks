@@ -30,8 +30,8 @@ echo "SS端口 (tcp/udp) = $SERVER_PORT"
 echo
 echo "KCP端口 (udp) = $KCP_PORT"
 echo
-echo "UDPSPEED端口 (udp) = $UDPSPEED_PORT"
-echo
+# echo "UDPSPEED端口 (udp) = $UDPSPEED_PORT"
+# echo
 echo "UDP2RAW端口 (tcp) = $UDP2RAW_PORT"
 echo
 echo "ss+kcp+udp2raw用户密码 (password) = $PASSWORD"
