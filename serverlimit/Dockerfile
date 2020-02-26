@@ -5,7 +5,7 @@
 FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 
-ARG SS_VER=3.3.1
+ARG SS_VER=3.3.4
 ENV TZ=Asia/Shanghai
 
 
